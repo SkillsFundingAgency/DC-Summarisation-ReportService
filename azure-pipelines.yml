@@ -111,6 +111,7 @@ stages:
         createLogFile: true
     
     - task: MSBuild@1
+      enabled: false
       displayName: 'Build and Package - Service Fabric Config'
       inputs:
         solution: '**\*.sfproj'
