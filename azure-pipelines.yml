@@ -48,6 +48,7 @@ stages:
  
       workingDirectory: '$(build.sourcesdirectory)\src'
       displayName: 'Generate Fake Application Parameters Node Config Files'
+      enabled: false
 #********************************************************************************
 # Install and setup tools needed
 #********************************************************************************   
