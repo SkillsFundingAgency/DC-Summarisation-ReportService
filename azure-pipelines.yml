@@ -48,6 +48,7 @@ stages:
  
       workingDirectory: '$(build.sourcesdirectory)\src'
       displayName: 'Generate Fake Application Parameters Node Config Files'
+      enabled: false
 #********************************************************************************
 # Install and setup tools needed
 #********************************************************************************   
@@ -110,6 +111,7 @@ stages:
         createLogFile: true
     
     - task: MSBuild@1
+      enabled: false
       displayName: 'Build and Package - Service Fabric Config'
       inputs:
         solution: '**\*.sfproj'
@@ -187,7 +189,7 @@ stages:
     
     - task: ServiceFabricUpdateManifests@2
       displayName: 'Update Service Fabric Manifests (Manifest versions)'
-      enabled: true
+      enabled: false
       inputs:
         applicationPackagePath: '$(build.artifactstagingdirectory)\ServiceFabric\ApplicationPackage '
         versionBehavior: Replace
