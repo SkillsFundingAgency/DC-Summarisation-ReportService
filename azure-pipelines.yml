@@ -189,7 +189,7 @@ stages:
     
     - task: ServiceFabricUpdateManifests@2
       displayName: 'Update Service Fabric Manifests (Manifest versions)'
-      enabled: true
+      enabled: false
       inputs:
         applicationPackagePath: '$(build.artifactstagingdirectory)\ServiceFabric\ApplicationPackage '
         versionBehavior: Replace
