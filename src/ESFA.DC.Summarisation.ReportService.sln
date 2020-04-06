@@ -13,6 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESFA.DC.Summarisation.ReportService.Service.Tests", "ESFA.DC.Summarisation.ReportService.Service.Tests\ESFA.DC.Summarisation.ReportService.Service.Tests.csproj", "{0ADA0B47-4D51-4CA0-B1A4-7306E6163146}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESFA.DC.Summarisation.ReportService.Interface", "ESFA.DC.Summarisation.ReportService.Interface\ESFA.DC.Summarisation.ReportService.Interface.csproj", "{2D81DB68-BCC7-464E-854A-ABB8FF1EFA88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESFA.DC.Summarisation.ReportService.Report", "ESFA.DC.Summarisation.ReportService.Report\ESFA.DC.Summarisation.ReportService.Report.csproj", "{ADF9B1AF-5C95-45C0-9DBC-AB9865CDC702}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESFA.DC.Summarisation.ReportService.Data", "ESFA.DC.Summarisation.ReportService.Data\ESFA.DC.Summarisation.ReportService.Data.csproj", "{3727B5DC-20F6-4398-84A2-4869D528D74B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESFA.DC.Summarisation.ReportService.Model", "ESFA.DC.Summarisation.ReportService.Model\ESFA.DC.Summarisation.ReportService.Model.csproj", "{094AAAF0-4B7C-4E9B-B42B-68A324BC5523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESFA.DC.Summarisation.ReportService.Report.Tests", "ESFA.DC.Summarisation.ReportService.Report.Tests\ESFA.DC.Summarisation.ReportService.Report.Tests.csproj", "{6A94EB2B-22D2-4E9E-A12D-D5F862ACF07C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +37,26 @@ Global
 		{0ADA0B47-4D51-4CA0-B1A4-7306E6163146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ADA0B47-4D51-4CA0-B1A4-7306E6163146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ADA0B47-4D51-4CA0-B1A4-7306E6163146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D81DB68-BCC7-464E-854A-ABB8FF1EFA88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D81DB68-BCC7-464E-854A-ABB8FF1EFA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D81DB68-BCC7-464E-854A-ABB8FF1EFA88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D81DB68-BCC7-464E-854A-ABB8FF1EFA88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF9B1AF-5C95-45C0-9DBC-AB9865CDC702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF9B1AF-5C95-45C0-9DBC-AB9865CDC702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF9B1AF-5C95-45C0-9DBC-AB9865CDC702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF9B1AF-5C95-45C0-9DBC-AB9865CDC702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3727B5DC-20F6-4398-84A2-4869D528D74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3727B5DC-20F6-4398-84A2-4869D528D74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3727B5DC-20F6-4398-84A2-4869D528D74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3727B5DC-20F6-4398-84A2-4869D528D74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{094AAAF0-4B7C-4E9B-B42B-68A324BC5523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094AAAF0-4B7C-4E9B-B42B-68A324BC5523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094AAAF0-4B7C-4E9B-B42B-68A324BC5523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094AAAF0-4B7C-4E9B-B42B-68A324BC5523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A94EB2B-22D2-4E9E-A12D-D5F862ACF07C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A94EB2B-22D2-4E9E-A12D-D5F862ACF07C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A94EB2B-22D2-4E9E-A12D-D5F862ACF07C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A94EB2B-22D2-4E9E-A12D-D5F862ACF07C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
