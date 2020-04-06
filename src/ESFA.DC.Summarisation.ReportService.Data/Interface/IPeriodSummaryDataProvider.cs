@@ -6,8 +6,8 @@ using ESFA.DC.Summarisation.ReportService.Model;
 
 namespace ESFA.DC.Summarisation.ReportService.Data.Interface
 {
-    public interface INcsDedsExtractDataProvider
+    public interface IPeriodSummaryDataProvider
     {
-        Task<IEnumerable<NcsDed>> ProvideAsync(IReportServiceContext reportServiceContext, CancellationToken cancellationToken);
+        Task<IEnumerable<PeriodSummary>> ProvideAsync(string period, string collectionType, CancellationToken cancellationToken);
     }
 }

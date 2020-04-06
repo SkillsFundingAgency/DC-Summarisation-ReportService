@@ -2,8 +2,9 @@
 {
     public interface IReportServiceContext
     {
-        string Period { get; }
-        string CollectionType { get; }
         string Container { get; }
+        int CollectionYear { get; }
+        int ReturnPeriod { get; }
+        string TaskType { get; }
     }
 }

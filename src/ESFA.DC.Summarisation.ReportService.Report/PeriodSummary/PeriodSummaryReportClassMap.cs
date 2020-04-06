@@ -1,11 +1,10 @@
 ﻿using CsvHelper.Configuration;
-using ESFA.DC.Summarisation.ReportService.Model;
 
-namespace ESFA.DC.Summarisation.ReportService.Report.NCS
+namespace ESFA.DC.Summarisation.ReportService.Report.PeriodSummary
 {
-    public class DEDSExtractReportClassMap : ClassMap<NcsDed>
+    public class PeriodSummaryReportClassMap : ClassMap<Model.PeriodSummary>
     {
-        public DEDSExtractReportClassMap()
+        public PeriodSummaryReportClassMap()
         {
             var index = 0;
 

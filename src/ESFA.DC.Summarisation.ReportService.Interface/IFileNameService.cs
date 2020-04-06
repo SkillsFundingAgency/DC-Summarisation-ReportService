@@ -2,6 +2,6 @@
 {
     public interface IFileNameService
     {
-        string Generate(IReportServiceContext reportServiceContext, string baseFileName);
+        string Generate(string reportBaseName, string period);
     }
 }

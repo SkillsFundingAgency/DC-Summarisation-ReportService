@@ -1,6 +1,6 @@
 ﻿namespace ESFA.DC.Summarisation.ReportService.Model
 {
-    public class NcsDed
+    public class PeriodSummary
     {
         public int Id { get; set; }
         public string CollectionReturnCode { get; set; }

@@ -2,6 +2,7 @@
 {
     public static class ReportTaskNameConstants
     {
-        public const string DEDSExtractReport = "TaskGenerateDEDSExtractReport";
+        public const string PeriodSummaryReport = "TaskGeneratePeriodSummaryReport";
+        public const string PeriodSummaryTaskType = "NcsPeriodSummary";
     }
 }

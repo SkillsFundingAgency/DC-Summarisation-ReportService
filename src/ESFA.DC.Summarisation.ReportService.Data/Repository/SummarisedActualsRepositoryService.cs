@@ -15,7 +15,7 @@ namespace ESFA.DC.Summarisation.ReportService.Data.Repository
             _connectionString = connectionString;
         }
 
-        public async Task<IEnumerable<SummarisedActual>> RetrieveSummarisedActualsAsync(string period, string collectionType, CancellationToken cancellationToken)
+        public async Task<IEnumerable<SummarisedActual>> RetrieveSummarisedActualsAsync(string collectionReturnCode, string collectionType, CancellationToken cancellationToken)
         {
             var sqlQuery = @"SELECT
                                 sa.ID, CollectionReturnCode, OrganisationId, PeriodTypeCode,
@@ -24,10 +24,10 @@ namespace ESFA.DC.Summarisation.ReportService.Data.Repository
                               FROM [dbo].[SummarisedActuals] sa
                               JOIN [dbo].[CollectionReturn] cr on cr.Id = sa.CollectionReturnId
                               WHERE 
-                              cr.CollectionReturnCode = @period and -- Period
-                              cr.CollectionType = @collectionType -- Year";
+                              cr.CollectionReturnCode = @collectionReturnCode and
+                              cr.CollectionType = @collectionType";
 
-            return await ExecuteSqlWithParametersAsync<SummarisedActual>(_connectionString, new { period, collectionType } , sqlQuery, cancellationToken);
+            return await ExecuteSqlWithParametersAsync<SummarisedActual>(_connectionString, new { collectionReturnCode, collectionType } , sqlQuery, cancellationToken);
         }
     }
 }

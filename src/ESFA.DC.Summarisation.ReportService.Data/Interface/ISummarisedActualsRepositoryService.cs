@@ -7,6 +7,6 @@ namespace ESFA.DC.Summarisation.ReportService.Data.Interface
 {
     public interface ISummarisedActualsRepositoryService
     {
-        Task<IEnumerable<SummarisedActual>> RetrieveSummarisedActualsAsync(string period, string year, CancellationToken cancellationToken);
+        Task<IEnumerable<SummarisedActual>> RetrieveSummarisedActualsAsync(string collectionReturnCode, string year, CancellationToken cancellationToken);
     }
 }

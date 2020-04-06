@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CsvHelper;
-using ESFA.DC.Summarisation.ReportService.Model;
-using ESFA.DC.Summarisation.ReportService.Report.NCS;
+using ESFA.DC.Summarisation.ReportService.Report.PeriodSummary;
 using FluentAssertions;
 using Xunit;
 
-namespace ESFA.DC.Summarisation.ReportService.Service.Tests.NCS
+namespace ESFA.DC.Summarisation.ReportService.Service.Tests.PeriodSummary
 {
-    public class DEDSExtractReportClassMapTests
+    public class PeriodSummaryReportClassMapTests
     {
         [Fact]
-        public void Map_Columns()
+        public void MapColumns()
         {
             var orderedColumns = new string[]
             {
@@ -34,7 +30,7 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests.NCS
                "ActualValue"
             };
 
-            var input = new List<NcsDed>();
+            var input = new List<Model.PeriodSummary>();
 
             using (var stream = new MemoryStream())
             {
@@ -42,7 +38,7 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests.NCS
                 {
                     using (var csvWriter = new CsvWriter(streamWriter))
                     {
-                        csvWriter.Configuration.RegisterClassMap<DEDSExtractReportClassMap>();
+                        csvWriter.Configuration.RegisterClassMap<PeriodSummaryReportClassMap>();
 
                         csvWriter.WriteRecords(input);
                     }

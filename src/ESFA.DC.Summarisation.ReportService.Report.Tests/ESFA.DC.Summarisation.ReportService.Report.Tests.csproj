@@ -183,8 +183,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NCS\DEDSExtractReportClassMapTests.cs" />
-    <Compile Include="NCS\DEDSExtractReportTests.cs" />
+    <Compile Include="PeriodSummary\PeriodSummaryReportClassMapTests.cs" />
+    <Compile Include="PeriodSummary\PeriodSummaryReportTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

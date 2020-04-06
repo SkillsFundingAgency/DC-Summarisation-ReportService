@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ESFA.DC.Logging.Interfaces;
@@ -12,13 +10,13 @@ using ESFA.DC.Summarisation.ReportService.Model;
 
 namespace ESFA.DC.Summarisation.ReportService.Data
 {
-    public class NcsDedsExtractDataProvider : INcsDedsExtractDataProvider
+    public class periodSummaryDataProvider : IPeriodSummaryDataProvider
     {
         private readonly ISummarisedActualsRepositoryService _summarisedActualsRepositoryService;
         private readonly IFcsRepositoryService _fcsRepositoryService;
         private readonly ILogger _logger;
 
-        public NcsDedsExtractDataProvider(
+        public periodSummaryDataProvider(
             ISummarisedActualsRepositoryService summarisedActualsRepositoryService,
             IFcsRepositoryService fcsRepositoryService,
             ILogger logger)
@@ -29,34 +27,38 @@ namespace ESFA.DC.Summarisation.ReportService.Data
         }
 
 
-        public async Task<IEnumerable<NcsDed>> ProvideAsync(IReportServiceContext reportServiceContext, CancellationToken cancellationToken)
+        public async Task<IEnumerable<PeriodSummary>> ProvideAsync(string period, string collectionType, CancellationToken cancellationToken)
         {
-            var summarisedActuals = await _summarisedActualsRepositoryService.RetrieveSummarisedActualsAsync(reportServiceContext.Period, reportServiceContext.CollectionType, cancellationToken);
+            var summarisedActuals = await _summarisedActualsRepositoryService.RetrieveSummarisedActualsAsync(period, collectionType, cancellationToken);
 
-            var distinctOrgIds = summarisedActuals.Select((sa => sa.OrganisationId)).Distinct().ToList();
+            var distinctOrgIds = summarisedActuals.Select(sa => sa.OrganisationId).Distinct().ToList();
             var organisations = await _fcsRepositoryService.RetrieveOrganisationsAsync(distinctOrgIds.ToArray(), cancellationToken);
 
-            IEnumerable<NcsDed> ncdDeds = CombineActualsAndOrganisations(summarisedActuals, organisations);
+            IEnumerable<PeriodSummary> PeriodSummaries = CombineActualsAndOrganisations(summarisedActuals, organisations);
 
-            return ncdDeds;
+            return PeriodSummaries;
         }
 
-        private IEnumerable<NcsDed> CombineActualsAndOrganisations(IEnumerable<SummarisedActual> summarisedActuals, IEnumerable<Organisation> organisations)
+        private IEnumerable<PeriodSummary> CombineActualsAndOrganisations(IEnumerable<SummarisedActual> summarisedActuals, IEnumerable<Organisation> organisations)
         {
-            var results = new List<NcsDed>(summarisedActuals?.Count() ?? 0);
+            var results = new List<PeriodSummary>(summarisedActuals?.Count() ?? 0);
 
             if (summarisedActuals == null)
             {
                 return results;
             }
 
+            var orgLookup = organisations?.ToDictionary(o => o.OrganisationIdentifier, o => o.UKPRN) ?? new Dictionary<string, int>();
+
             foreach (var summarisedActual in summarisedActuals)
             {
-                var ncdDed = new NcsDed
+                orgLookup.TryGetValue(summarisedActual.OrganisationId, out var ukprn);
+
+                var ncdDed = new PeriodSummary
                 {
                     Id = summarisedActual.ID,
                     CollectionReturnCode = summarisedActual.CollectionReturnCode,
-                    UKPRN = organisations?.FirstOrDefault(o => o.OrganisationIdentifier == summarisedActual.OrganisationId)?.UKPRN ?? 0,
+                    UKPRN = ukprn,
                     OrganisationId = summarisedActual.OrganisationId,
                     PeriodTypeCode = summarisedActual.PeriodTypeCode,
                     Period = summarisedActual.Period,

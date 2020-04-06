@@ -1,5 +1,7 @@
-﻿using ESFA.DC.DateTimeProvider.Interface;
+﻿using System;
+using ESFA.DC.DateTimeProvider.Interface;
 using ESFA.DC.Summarisation.ReportService.Interface;
+using ESFA.DC.Summarisation.ReportService.Report.Constants;
 
 namespace ESFA.DC.Summarisation.ReportService.Service
 {
@@ -12,9 +14,9 @@ namespace ESFA.DC.Summarisation.ReportService.Service
             _dateTimeProvider = dateTimeProvider;
         }
 
-        public string Generate(IReportServiceContext reportServiceContext, string baseFileName)
+        public string Generate(string reportBaseName, string period)
         {
-            return $"{baseFileName} {reportServiceContext.Period} {GetCurrentDateTime}";
+            return $"{reportBaseName} {period} {GetCurrentDateTime}";
         }
 
         public string GetCurrentDateTime => $"{_dateTimeProvider.GetNowUtc():yyyyMMdd-HHmmss}";
