@@ -1,7 +1,5 @@
-﻿using System;
-using ESFA.DC.DateTimeProvider.Interface;
+﻿using ESFA.DC.DateTimeProvider.Interface;
 using ESFA.DC.Summarisation.ReportService.Interface;
-using ESFA.DC.Summarisation.ReportService.Report.Constants;
 
 namespace ESFA.DC.Summarisation.ReportService.Service
 {

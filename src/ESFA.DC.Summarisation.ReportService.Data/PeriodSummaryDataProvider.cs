@@ -5,18 +5,17 @@ using System.Threading.Tasks;
 using ESFA.DC.Logging.Interfaces;
 using ESFA.DC.Summarisation.ReportService.Data.Interface;
 using ESFA.DC.Summarisation.ReportService.Data.Model;
-using ESFA.DC.Summarisation.ReportService.Interface;
 using ESFA.DC.Summarisation.ReportService.Model;
 
 namespace ESFA.DC.Summarisation.ReportService.Data
 {
-    public class periodSummaryDataProvider : IPeriodSummaryDataProvider
+    public class PeriodSummaryDataProvider : IPeriodSummaryDataProvider
     {
         private readonly ISummarisedActualsRepositoryService _summarisedActualsRepositoryService;
         private readonly IFcsRepositoryService _fcsRepositoryService;
         private readonly ILogger _logger;
 
-        public periodSummaryDataProvider(
+        public PeriodSummaryDataProvider(
             ISummarisedActualsRepositoryService summarisedActualsRepositoryService,
             IFcsRepositoryService fcsRepositoryService,
             ILogger logger)
