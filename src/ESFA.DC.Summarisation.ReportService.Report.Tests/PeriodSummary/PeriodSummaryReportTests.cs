@@ -30,7 +30,6 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests.PeriodSummary
             contextMock.SetupGet(c => c.Container).Returns(@"C:\Temp");
             contextMock.SetupGet(c => c.CollectionYear).Returns(1920);
             contextMock.SetupGet(c => c.ReturnPeriod).Returns(1);
-            contextMock.SetupGet(c => c.TaskType).Returns("NcsPeriodSummary");
 
             var dateTimeProvider = new Mock<IDateTimeProvider>();
             dateTimeProvider.Setup(sm => sm.GetNowUtc()).Returns(DateTime.Now);
@@ -44,7 +43,7 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests.PeriodSummary
             IFcsRepositoryService fcsRepositoryService = new FcsRepositoryService("(local);Database=FCS;User Id=User;Password=Password1;Encrypt=True;");
             ISummarisedActualsRepositoryService summarisedActualsRepositoryService = new SummarisedActualsRepositoryService("data source=(local);initial catalog=SummarisedActuals;User Id=User;Password=Password1;Encrypt=True;");
 
-            IPeriodSummaryDataProvider periodSummaryDataProvider = new periodSummaryDataProvider(summarisedActualsRepositoryService, fcsRepositoryService, loggerMock.Object);
+            IPeriodSummaryDataProvider periodSummaryDataProvider = new PeriodSummaryDataProvider(summarisedActualsRepositoryService, fcsRepositoryService, loggerMock.Object);
 
             var periodSummaryReport = new PeriodSummaryReport(fileNameService, csvService, periodSummaryDataProvider, loggerMock.Object);
 

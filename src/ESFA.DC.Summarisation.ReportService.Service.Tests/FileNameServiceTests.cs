@@ -1,6 +1,5 @@
 ﻿using System;
 using ESFA.DC.DateTimeProvider.Interface;
-using ESFA.DC.Summarisation.ReportService.Interface;
 using FluentAssertions;
 using Moq;
 using Xunit;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ESFA.DC.CsvService.Interface;
@@ -14,19 +13,19 @@ namespace ESFA.DC.Summarisation.ReportService.Report.PeriodSummary
     {
         private readonly IFileNameService _fileNameService;
         private readonly ICsvFileService _csvService;
-        private readonly IPeriodSummaryDataProvider _ncsDedsExtractDataProvider;
+        private readonly IPeriodSummaryDataProvider _periodSummaryDataProvider;
         private readonly ILogger _logger;
 
         public PeriodSummaryReport(
             IFileNameService fileNameService,
             ICsvFileService csvService,
-            IPeriodSummaryDataProvider ncsDedsExtractDataProvider,
+            IPeriodSummaryDataProvider periodSummaryDataProvider,
             ILogger logger
             )
         {
             _fileNameService = fileNameService;
             _csvService = csvService;
-            _ncsDedsExtractDataProvider = ncsDedsExtractDataProvider;
+            _periodSummaryDataProvider = periodSummaryDataProvider;
             _logger = logger;
         }
 
@@ -41,21 +40,14 @@ namespace ESFA.DC.Summarisation.ReportService.Report.PeriodSummary
             var period = string.Empty;
             var collectionType = string.Empty;
 
-            switch (reportServiceContext.TaskType)
-            {
-                case ReportTaskNameConstants.PeriodSummaryTaskType:
-                    reportBaseName = "NCS Summarised Actuals Data Extract";
-                    periodPrefix = "N";
-                    period = $"N{reportServiceContext.ReturnPeriod:D2}";
-                    collectionType = $"NCS{reportServiceContext.CollectionYear:D4}";
-                    break;
-                default:
-                    throw new ArgumentException($"Unexpected TaskType {reportServiceContext.TaskType}", nameof(reportServiceContext));
-            }
+            reportBaseName = "NCS Summarised Actuals Data Extract";
+            periodPrefix = "N";
+            period = $"{periodPrefix}{reportServiceContext.ReturnPeriod:D2}";
+            collectionType = $"NCS{reportServiceContext.CollectionYear:D4}";
 
-            var fileName = _fileNameService.Generate(reportBaseName, period);
+            var fileName = _fileNameService.Generate(reportBaseName,  period);
 
-            var periods = await _ncsDedsExtractDataProvider.ProvideAsync(period, collectionType, cancellationToken);
+            var periods = await _periodSummaryDataProvider.ProvideAsync(period, collectionType, cancellationToken);
 
             await _csvService.WriteAsync<Model.PeriodSummary, PeriodSummaryReportClassMap>(periods, fileName, reportServiceContext.Container, cancellationToken);
 
