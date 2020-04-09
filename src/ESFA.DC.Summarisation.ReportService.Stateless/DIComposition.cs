@@ -18,8 +18,6 @@ namespace ESFA.DC.Summarisation.ReportService.Stateless
 
             var statelessServiceConfiguration = serviceFabricConfigurationService.GetConfigSectionAsStatelessServiceConfiguration();
             var reportServiceConfiguration = serviceFabricConfigurationService.GetConfigSectionAs<ReportServiceConfiguration>("ReportServiceConfiguration");
-            //var dataPersistConfiguration = serviceFabricConfigurationService.GetConfigSectionAs<DataPersistConfiguration>("DataPersistConfiguration");
-            //var dataPersistanceServiceConfiguration = new DataPersistanceConfiguration(dataPersistConfiguration.ReportDataConnectionString, dataPersistConfiguration.DataPersistFeatureEnabled);
 
             var azureStorageFileServiceConfiguration = serviceFabricConfigurationService.GetConfigSectionAs<AzureStorageFileServiceConfiguration>("AzureStorageFileServiceConfiguration");
             var ioConfiguration = serviceFabricConfigurationService.GetConfigSectionAs<IOConfiguration>("IOConfiguration");
@@ -27,7 +25,6 @@ namespace ESFA.DC.Summarisation.ReportService.Stateless
             containerBuilder.RegisterModule(new StatelessBaseModule(statelessServiceConfiguration));
             containerBuilder.RegisterModule(new IOModule(azureStorageFileServiceConfiguration, ioConfiguration));
             containerBuilder.RegisterModule(new DataModule(reportServiceConfiguration));
-            //containerBuilder.RegisterModule(new DataPersistanceModule(dataPersistanceServiceConfiguration));
             containerBuilder.RegisterModule<ReportsServiceModule>();
             containerBuilder.RegisterModule<ReportsModule>();
 

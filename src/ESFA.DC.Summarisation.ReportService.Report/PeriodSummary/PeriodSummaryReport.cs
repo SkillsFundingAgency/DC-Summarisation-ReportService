@@ -40,17 +40,10 @@ namespace ESFA.DC.Summarisation.ReportService.Report.PeriodSummary
             var period = string.Empty;
             var collectionType = string.Empty;
 
-            //switch (reportServiceContext.TaskType)
-            //{
-            //    case ReportTaskNameConstants.PeriodSummaryTaskType:
-                    reportBaseName = "NCS Summarised Actuals Data Extract";
-                    periodPrefix = "N";
-                    period = $"{periodPrefix}{reportServiceContext.ReturnPeriod:D2}";
-                    collectionType = $"NCS{reportServiceContext.CollectionYear:D4}";
-            //        break;
-            //    default:
-            //        throw new ArgumentException($"Unexpected TaskType {reportServiceContext.TaskType}", nameof(reportServiceContext));
-            //}
+            reportBaseName = "NCS Summarised Actuals Data Extract";
+            periodPrefix = "N";
+            period = $"{periodPrefix}{reportServiceContext.ReturnPeriod:D2}";
+            collectionType = $"NCS{reportServiceContext.CollectionYear:D4}";
 
             var fileName = _fileNameService.Generate(reportBaseName,  period);
 
