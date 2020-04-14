@@ -25,7 +25,7 @@ stages:
       "Nuget.Version": '5.3.0'
       "DotnetCore.Version": '2.2.x'
       "Solution": 'src\**\*.sln'
-      "SF.ProjectName": '**\*.sfproj'      
+      "SF.ProjectName": 'src\**\*.sfproj'      
 
     pool:
       name: DCT
@@ -111,10 +111,9 @@ stages:
         createLogFile: true
     
     - task: MSBuild@1
-      enabled: false
       displayName: 'Build and Package - Service Fabric Config'
       inputs:
-        solution: '**\*.sfproj'
+        solution: '$(SF.ProjectName)'
         msbuildArchitecture: x64
         platform: '$(Build.PlatformX64)'
         configuration: '$(Build.Configuration)'
