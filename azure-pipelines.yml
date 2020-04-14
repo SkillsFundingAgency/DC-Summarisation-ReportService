@@ -25,7 +25,7 @@ stages:
       "Nuget.Version": '5.3.0'
       "DotnetCore.Version": '2.2.x'
       "Solution": 'src\**\*.sln'
-      "SF.ProjectName": '**\*.sfproj'      
+      "SF.ProjectName": 'src\**\*.sfproj'      
 
     pool:
       name: DCT
@@ -48,16 +48,9 @@ stages:
  
       workingDirectory: '$(build.sourcesdirectory)\src'
       displayName: 'Generate Fake Application Parameters Node Config Files'
-      enabled: false
 #********************************************************************************
 # Install and setup tools needed
 #********************************************************************************   
-
-    - task: DotNetCoreInstaller@0
-      enabled: false
-      displayName: 'Use .NET Core sdk $(DotnetCore.Version) - (x=latest)'
-      inputs:
-        version: $(DotnetCore.Version)
 
     - task: UseDotNet@2
       displayName: 'Use .NET Core sdk : $(DotnetCore.Version)'
@@ -111,10 +104,9 @@ stages:
         createLogFile: true
     
     - task: MSBuild@1
-      enabled: false
       displayName: 'Build and Package - Service Fabric Config'
       inputs:
-        solution: '**\*.sfproj'
+        solution: '$(SF.ProjectName)'
         msbuildArchitecture: x64
         platform: '$(Build.PlatformX64)'
         configuration: '$(Build.Configuration)'
@@ -124,7 +116,6 @@ stages:
         restoreNugetPackages: false
         logProjectEvents: true
         createLogFile: true
-
 
 #********************************************************************************
 # Copy Files into Aftifact Folder before test.
@@ -243,7 +234,6 @@ stages:
     
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: ServiceFabric'
-      enabled: true
       condition: and(succeeded(), eq(variables['PublishArtifact_ServiceFabric'], 'True'))
       inputs:
         ArtifactName: ServiceFabric
@@ -251,7 +241,6 @@ stages:
     
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: NugetPackages'
-      enabled: true
       condition: and(succeeded(), eq(variables['PublishArtifact_NugetPackages'], 'True'))
       inputs:
         ArtifactName: NugetPackages
@@ -259,7 +248,6 @@ stages:
     
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: Databases'
-      enabled: true
       condition: and(succeeded(), eq(variables['PublishArtifact_Databases'], 'True'))
       inputs:
         ArtifactName: Databases
