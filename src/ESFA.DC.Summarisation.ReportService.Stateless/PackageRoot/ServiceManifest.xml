@@ -15,7 +15,6 @@
     <EntryPoint>
       <ExeHost>
         <Program>ESFA.DC.Summarisation.ReportService.Stateless.exe</Program>
-        <ConsoleRedirection FileRetentionCount="5" FileMaxSizeInKb="2048"/>
       </ExeHost>
     </EntryPoint>
   </CodePackage>

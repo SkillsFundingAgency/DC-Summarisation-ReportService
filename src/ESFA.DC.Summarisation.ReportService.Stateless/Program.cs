@@ -35,9 +35,6 @@ namespace ESFA.DC.Summarisation.ReportService.Stateless
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
                 ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
                 throw;
             }
