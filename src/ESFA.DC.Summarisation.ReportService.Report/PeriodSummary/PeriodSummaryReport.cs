@@ -45,7 +45,7 @@ namespace ESFA.DC.Summarisation.ReportService.Report.PeriodSummary
             period = $"{periodPrefix}{reportServiceContext.ReturnPeriod:D2}";
             collectionType = $"NCS{reportServiceContext.CollectionYear:D4}";
 
-            var fileName = _fileNameService.Generate(reportBaseName,  period);
+            var fileName = $"{_fileNameService.Generate(reportBaseName, period)}.CSV";
 
             var periods = await _periodSummaryDataProvider.ProvideAsync(period, collectionType, cancellationToken);
 
