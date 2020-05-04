@@ -14,7 +14,7 @@ namespace ESFA.DC.Summarisation.ReportService.Service
 
         public string Generate(string reportBaseName, string period)
         {
-            return $"{reportBaseName} {period} {GetCurrentDateTime}.csv";
+            return $"{period}/{reportBaseName} {period} {GetCurrentDateTime}.csv";
         }
 
         public string GetCurrentDateTime => $"{_dateTimeProvider.GetNowUtc():yyyyMMdd-HHmmss}";

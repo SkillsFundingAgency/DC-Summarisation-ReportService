@@ -21,7 +21,7 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests
             var result = service.Generate("Base Name", "N01");
 
             // Assert
-            result.Should().Be("Base Name N01 20200203-080910.csv");
+            result.Should().Be("N01/Base Name N01 20200203-080910.csv");
         }
     }
 }
