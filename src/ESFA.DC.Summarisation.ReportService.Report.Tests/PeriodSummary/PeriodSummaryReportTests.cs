@@ -52,7 +52,28 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests.PeriodSummary
 
             // Assert
             result.Should().NotBeNull();
+        }
 
+        [Fact(Skip = "To be used for testing FCS Repository. Replace connection strings as appropriate.")]
+        public async Task RetrieveFromFcsWithSingleItem()
+        {
+            IFcsRepositoryService fcsRepositoryService = new FcsRepositoryService(
+                "(local);Database=FCS;User Id=User;Password=Password1;Encrypt=True;");
+
+            var result1 = await fcsRepositoryService.RetrieveOrganisationsAsync(new string[] { "one" }, new CancellationToken());
+
+            Assert.NotNull(result1);
+        }
+
+        [Fact(Skip = "To be used for testing FCS Repository. Replace connection strings as appropriate.")]
+        public async Task RetrieveFromFcsWithMultipleItemsItem()
+        {
+            IFcsRepositoryService fcsRepositoryService = new FcsRepositoryService(
+                "(local);Database=FCS;User Id=User;Password=Password1;Encrypt=True;");
+
+            var result2 = await fcsRepositoryService.RetrieveOrganisationsAsync(new string[] { "one", "two" }, new CancellationToken());
+
+            Assert.NotNull(result2);
         }
     }
 }

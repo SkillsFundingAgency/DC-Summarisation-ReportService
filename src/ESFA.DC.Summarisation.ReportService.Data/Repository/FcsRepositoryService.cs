@@ -21,7 +21,7 @@ namespace ESFA.DC.Summarisation.ReportService.Data.Repository
                                 MAX(ContractVersionNumber) ContractVersionNumber, OrganisationIdentifier, UKPRN
                             FROM [dbo].[Contract] c
                             JOIN [dbo].[Contractor] cr on c.ContractorId = cr.Id
-                            WHERE cr.OrganisationIdentifier in (@OrganisationIds)
+                            WHERE cr.OrganisationIdentifier in @OrganisationIds
                             GROUP BY OrganisationIdentifier, ukprn";
 
             return await ExecuteSqlWithParametersAsync<Organisation>(_connectionString, new { OrganisationIds } , sqlQuery, cancellationToken);
