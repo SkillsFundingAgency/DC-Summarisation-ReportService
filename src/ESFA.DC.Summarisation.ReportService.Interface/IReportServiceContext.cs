@@ -9,5 +9,13 @@ namespace ESFA.DC.Summarisation.ReportService.Interface
 
         int CollectionYear { get; }
         int ReturnPeriod { get; }
+
+        string CollectionReturnCodeDC { get; }
+
+        string CollectionReturnCodeESF { get; }
+
+        string CollectionReturnCodeApp { get; }
+
+        string CollectionReturnCodeNCS { get; }
     }
 }

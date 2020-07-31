@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using ESFA.DC.JobContextManager.Model;
+using ESFA.DC.Summarisation.ReportService.Constants;
 using ESFA.DC.Summarisation.ReportService.Interface;
-using ESFA.DC.Summarisation.ReportService.Stateless.Constants;
 
 namespace ESFA.DC.Summarisation.ReportService.Stateless.Context
 {
@@ -20,5 +21,17 @@ namespace ESFA.DC.Summarisation.ReportService.Stateless.Context
 
         public int CollectionYear => int.Parse(_jobContextMessage.KeyValuePairs[ContextConstants.CollectionYear].ToString());
         public int ReturnPeriod => int.Parse(_jobContextMessage.KeyValuePairs[ContextConstants.ReturnPeriod].ToString());
+
+        public string CollectionReturnCodeDC => GetValueIfDefined(ContextConstants.CollectionReturnCodeDC);
+        public string CollectionReturnCodeESF => GetValueIfDefined(ContextConstants.CollectionReturnCodeESF);
+        public string CollectionReturnCodeApp => GetValueIfDefined(ContextConstants.CollectionReturnCodeApp);
+        public string CollectionReturnCodeNCS => GetValueIfDefined(ContextConstants.CollectionReturnCodeNCS);
+
+        private string GetValueIfDefined(string key)
+        {
+            return _jobContextMessage.KeyValuePairs.TryGetValue(key, out object collectionReturnCodeDC) 
+                ? collectionReturnCodeDC.ToString() 
+                : null;
+        }
     }
 }

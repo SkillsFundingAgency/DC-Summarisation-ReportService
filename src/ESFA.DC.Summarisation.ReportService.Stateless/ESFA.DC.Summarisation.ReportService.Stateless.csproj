@@ -302,7 +302,6 @@
   <ItemGroup>
     <Compile Include="Config\IOConfiguration.cs" />
     <Compile Include="Config\ReportServiceConfiguration.cs" />
-    <Compile Include="Constants\ContextConstants.cs" />
     <Compile Include="Context\SummarisationReportServiceContext.cs" />
     <Compile Include="DIComposition.cs" />
     <Compile Include="MessageHandler.cs" />
@@ -328,6 +327,10 @@
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Constants\ESFA.DC.Summarisation.ReportService.Constants.csproj">
+      <Project>{EEA9534F-0071-4721-9502-2753283F5B8C}</Project>
+      <Name>ESFA.DC.Summarisation.ReportService.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Interface\ESFA.DC.Summarisation.ReportService.Interface.csproj">
       <Project>{2D81DB68-BCC7-464E-854A-ABB8FF1EFA88}</Project>
       <Name>ESFA.DC.Summarisation.ReportService.Interface</Name>

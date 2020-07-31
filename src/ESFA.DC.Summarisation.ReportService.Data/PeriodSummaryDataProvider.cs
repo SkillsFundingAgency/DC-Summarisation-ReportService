@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ESFA.DC.Logging.Interfaces;
 using ESFA.DC.Summarisation.ReportService.Data.Interface;
 using ESFA.DC.Summarisation.ReportService.Data.Model;
+using ESFA.DC.Summarisation.ReportService.Interface.Model;
 using ESFA.DC.Summarisation.ReportService.Model;
 
 namespace ESFA.DC.Summarisation.ReportService.Data
@@ -37,6 +38,30 @@ namespace ESFA.DC.Summarisation.ReportService.Data
 
             return PeriodSummaries;
         }
+
+        public async Task<IEnumerable<PeriodSummary>> ProvideAsync(
+            List<CollectionTypeDetails> collectionTypes,
+            CancellationToken cancellationToken)
+        {
+            var summarisedActuals = new List<SummarisedActual>();
+
+            foreach (var collectionType in collectionTypes)
+            {
+                summarisedActuals.AddRange(
+                    await _summarisedActualsRepositoryService.RetrieveSummarisedActualsAsync(
+                        collectionType.CollectionReturn, 
+                        collectionType.CollectionType, 
+                        cancellationToken));
+            }
+
+            var distinctOrgIds = summarisedActuals.Select(sa => sa.OrganisationId).Distinct().ToList();
+            var organisations = await _fcsRepositoryService.RetrieveOrganisationsAsync(distinctOrgIds.ToArray(), cancellationToken);
+
+            IEnumerable<PeriodSummary> PeriodSummaries = CombineActualsAndOrganisations(summarisedActuals, organisations);
+
+            return PeriodSummaries;
+        }
+
 
         private IEnumerable<PeriodSummary> CombineActualsAndOrganisations(IEnumerable<SummarisedActual> summarisedActuals, IEnumerable<Organisation> organisations)
         {
