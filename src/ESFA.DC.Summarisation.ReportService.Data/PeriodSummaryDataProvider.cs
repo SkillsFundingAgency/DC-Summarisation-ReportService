@@ -26,21 +26,8 @@ namespace ESFA.DC.Summarisation.ReportService.Data
             _logger = logger;
         }
 
-
-        public async Task<IEnumerable<PeriodSummary>> ProvideAsync(string period, string collectionType, CancellationToken cancellationToken)
-        {
-            var summarisedActuals = await _summarisedActualsRepositoryService.RetrieveSummarisedActualsAsync(period, collectionType, cancellationToken);
-
-            var distinctOrgIds = summarisedActuals.Select(sa => sa.OrganisationId).Distinct().ToList();
-            var organisations = await _fcsRepositoryService.RetrieveOrganisationsAsync(distinctOrgIds.ToArray(), cancellationToken);
-
-            IEnumerable<PeriodSummary> PeriodSummaries = CombineActualsAndOrganisations(summarisedActuals, organisations);
-
-            return PeriodSummaries;
-        }
-
         public async Task<IEnumerable<PeriodSummary>> ProvideAsync(
-            List<CollectionTypeDetails> collectionTypes,
+            ICollection<CollectionTypeDetails> collectionTypes,
             CancellationToken cancellationToken)
         {
             var summarisedActuals = new List<SummarisedActual>();
