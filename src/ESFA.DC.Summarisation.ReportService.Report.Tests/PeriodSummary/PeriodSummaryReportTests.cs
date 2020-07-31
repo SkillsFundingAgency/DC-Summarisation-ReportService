@@ -45,7 +45,7 @@ namespace ESFA.DC.Summarisation.ReportService.Service.Tests.PeriodSummary
 
             IPeriodSummaryDataProvider periodSummaryDataProvider = new PeriodSummaryDataProvider(summarisedActualsRepositoryService, fcsRepositoryService, loggerMock.Object);
 
-            var periodSummaryReport = new PeriodSummaryReport(fileNameService, csvService, periodSummaryDataProvider, loggerMock.Object);
+            var periodSummaryReport = new PeriodSummaryReport(fileNameService, csvService, null, periodSummaryDataProvider, loggerMock.Object);
 
             // Act
             var result = await periodSummaryReport.GenerateAsync(contextMock.Object, cancellationToken);

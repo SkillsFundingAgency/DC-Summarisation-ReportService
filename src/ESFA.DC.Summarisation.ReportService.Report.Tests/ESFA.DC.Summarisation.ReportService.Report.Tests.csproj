@@ -183,6 +183,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PeriodSummary\PeriodSummaryCollectionTypeTests.cs" />
     <Compile Include="PeriodSummary\PeriodSummaryReportClassMapTests.cs" />
     <Compile Include="PeriodSummary\PeriodSummaryReportTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

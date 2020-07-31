@@ -26,6 +26,7 @@ namespace ESFA.DC.Summarisation.ReportService.Stateless
             containerBuilder.RegisterModule(new IOModule(azureStorageFileServiceConfiguration, ioConfiguration));
             containerBuilder.RegisterModule(new DataModule(reportServiceConfiguration));
             containerBuilder.RegisterModule<ReportsServiceModule>();
+            containerBuilder.RegisterModule<CollectionTypeFormattersModule>();
             containerBuilder.RegisterModule<ReportsModule>();
 
             return containerBuilder;

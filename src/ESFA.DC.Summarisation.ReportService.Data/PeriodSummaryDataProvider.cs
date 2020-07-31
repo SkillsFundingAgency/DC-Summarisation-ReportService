@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ESFA.DC.Logging.Interfaces;
 using ESFA.DC.Summarisation.ReportService.Data.Interface;
 using ESFA.DC.Summarisation.ReportService.Data.Model;
+using ESFA.DC.Summarisation.ReportService.Interface.Model;
 using ESFA.DC.Summarisation.ReportService.Model;
 
 namespace ESFA.DC.Summarisation.ReportService.Data
@@ -25,10 +26,20 @@ namespace ESFA.DC.Summarisation.ReportService.Data
             _logger = logger;
         }
 
-
-        public async Task<IEnumerable<PeriodSummary>> ProvideAsync(string period, string collectionType, CancellationToken cancellationToken)
+        public async Task<IEnumerable<PeriodSummary>> ProvideAsync(
+            ICollection<CollectionTypeDetails> collectionTypes,
+            CancellationToken cancellationToken)
         {
-            var summarisedActuals = await _summarisedActualsRepositoryService.RetrieveSummarisedActualsAsync(period, collectionType, cancellationToken);
+            var summarisedActuals = new List<SummarisedActual>();
+
+            foreach (var collectionType in collectionTypes)
+            {
+                summarisedActuals.AddRange(
+                    await _summarisedActualsRepositoryService.RetrieveSummarisedActualsAsync(
+                        collectionType.CollectionReturn, 
+                        collectionType.CollectionType, 
+                        cancellationToken));
+            }
 
             var distinctOrgIds = summarisedActuals.Select(sa => sa.OrganisationId).Distinct().ToList();
             var organisations = await _fcsRepositoryService.RetrieveOrganisationsAsync(distinctOrgIds.ToArray(), cancellationToken);
@@ -37,6 +48,7 @@ namespace ESFA.DC.Summarisation.ReportService.Data
 
             return PeriodSummaries;
         }
+
 
         private IEnumerable<PeriodSummary> CombineActualsAndOrganisations(IEnumerable<SummarisedActual> summarisedActuals, IEnumerable<Organisation> organisations)
         {

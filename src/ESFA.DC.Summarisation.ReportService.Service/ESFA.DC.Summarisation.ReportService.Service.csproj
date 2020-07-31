@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Constants\ESFA.DC.Summarisation.ReportService.Constants.csproj" />
     <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Interface\ESFA.DC.Summarisation.ReportService.Interface.csproj" />
     <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Report\ESFA.DC.Summarisation.ReportService.Report.csproj" />
   </ItemGroup>
