@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Data\ESFA.DC.Summarisation.ReportService.Data.csproj" />
+    <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Interface\ESFA.DC.Summarisation.ReportService.Interface.csproj" />
+    <ProjectReference Include="..\ESFA.DC.Summarisation.ReportService.Service\ESFA.DC.Summarisation.ReportService.Service.csproj" />
+  </ItemGroup>
+
+</Project>
